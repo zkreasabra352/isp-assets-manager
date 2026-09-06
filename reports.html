@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>التقارير المتقدمة - ISP Assets Manager</title>
+
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/reports.css">
+</head>
+
+<body>
+
+    <div class="app-layout">
+
+        <!-- ================= SIDEBAR ================= -->
+        <aside class="sidebar" id="sidebar">
+
+            <div class="sidebar-logo">
+                <div class="logo-box">
+                    <span>ISP</span>
+                </div>
+                <div class="logo-text">
+                    <strong>ISP Assets</strong>
+                    <span>Manager</span>
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <span class="sidebar-title">الرئيسية</span>
+                <nav class="sidebar-nav">
+                    <a href="dashboard.html" class="nav-item">
+                        <span class="nav-icon">⌂</span>
+                        <span>لوحة التحكم</span>
+                    </a>
+                    <a href="parts.html" class="nav-item">
+                        <span class="nav-icon">▣</span>
+                        <span>قطع الشبكة</span>
+                    </a>
+                    <a href="customer-parts.html" class="nav-item">
+                        <span class="nav-icon">♙</span>
+                        <span>قطع الزبائن</span>
+                    </a>
+                </nav>
+            </div>
+
+            <div class="sidebar-section">
+                <span class="sidebar-title">النظام</span>
+                <nav class="sidebar-nav">
+                    <a href="reports.html" class="nav-item active">
+                        <span class="nav-icon">▤</span>
+                        <span>التقارير</span>
+                    </a>
+                    <a href="logs.html" class="nav-item">
+            <span class="nav-icon">☷</span>
+            <span>السجلات</span>
+        </a>
+                </nav>
+            </div>
+
+            <div class="sidebar-bottom">
+                <button id="logoutBtn" class="logout-button">
+                    <span class="nav-icon">↪</span>
+                    <span>تسجيل الخروج</span>
+                </button>
+            </div>
+
+        </aside>
+
+        <!-- ================= MAIN CONTENT ================= -->
+        <main class="main-content">
+
+            <!-- TOPBAR -->
+            <header class="topbar">
+                <div class="page-title-group">
+                    <span class="page-label">مركز البيانات والتحليل</span>
+                    <h1>التقارير الشاملة</h1>
+                </div>
+
+                <div class="topbar-user">
+                    <div class="user-status">
+                        <span class="status-dot"></span>
+                        <span>متصل</span>
+                    </div>
+                    <div class="user-avatar" id="userAvatar">U</div>
+                    <div class="user-info">
+                        <strong id="userEmail">المستخدم</strong>
+                        <span>مدير النظام</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- CONTROLS & FILTERS -->
+            <section class="glass-card filters-section">
+                <div class="card-header-gradient">
+                    <div class="header-icon">⚙️</div>
+                    <div>
+                        <h3>فلترة وتخصيص البيانات</h3>
+                        <p>اختر المعايير المطلوبة لتوليد التقرير المخصص</p>
+                    </div>
+                </div>
+
+                <form id="reportFilterForm" class="filter-grid">
+                    
+                    <div class="form-group">
+                        <label for="dataSource">مصدر البيانات</label>
+                        <select id="dataSource" class="glass-input">
+                            <option value="all">🌐 جميع الأصول (الشبكة + الزبائن)</option>
+                            <option value="network">🖥️ قطع الشبكة الأساسية</option>
+                            <option value="customer">👥 قطع الزبائن الممنوحة</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="typeFilter">نوع القطعة</label>
+                        <select id="typeFilter" class="glass-input">
+                            <option value="">كل الأنواع المتاحة</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="dateFrom">تاريخ البداية</label>
+                        <input type="date" id="dateFrom" class="glass-input">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="dateTo">تاريخ النهاية</label>
+                        <input type="date" id="dateTo" class="glass-input">
+                    </div>
+
+                </form>
+
+                <div class="report-actions">
+                    <button id="exportCsvBtn" class="btn-action btn-excel">
+                        <span class="btn-icon">📊</span>
+                        <span>تصدير Excel</span>
+                    </button>
+                    <button id="printReportBtn" class="btn-action btn-print">
+                        <span class="btn-icon">🖨️</span>
+                        <span>طباعة / طباعة PDF</span>
+                    </button>
+                </div>
+            </section>
+
+            <!-- STATS SUMMARY -->
+            <section class="stats-grid-reports">
+                <div class="stat-card-pro blue">
+                    <div class="stat-icon-glow">📦</div>
+                    <div class="stat-info">
+                        <span>إجمالي القطع المفلترة</span>
+                        <strong id="summaryCount">0</strong>
+                    </div>
+                </div>
+
+                <div class="stat-card-pro green">
+                    <div class="stat-icon-glow">🌐</div>
+                    <div class="stat-info">
+                        <span>عناوين IP النشطة</span>
+                        <strong id="summaryIps">0</strong>
+                    </div>
+                </div>
+
+                <div class="stat-card-pro purple">
+                    <div class="stat-icon-glow">🏷️</div>
+                    <div class="stat-info">
+                        <span>أنواع القطع المشمولة</span>
+                        <strong id="summaryTypes">0</strong>
+                    </div>
+                </div>
+            </section>
+
+            <!-- REPORT TABLE -->
+            <section class="glass-card table-section print-area">
+                <div class="print-header">
+                    <div class="print-logo">ISP ASSETS MANAGER</div>
+                    <h2>تقرير أصول وسجلات الشبكة</h2>
+                    <p id="printDate"></p>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="glass-table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>الاسم / الزبون</th>
+                                <th>النوع / التصنيف</th>
+                                <th>المصدر</th>
+                                <th>عنوان IP</th>
+                                <th>عنوان MAC</th>
+                                <th>السيرفر / تاريخ المنح</th>
+                            </tr>
+                        </thead>
+                        <tbody id="reportsTableBody">
+                            <tr>
+                                <td colspan="7" class="loading-state">
+                                    <div class="spinner"></div>
+                                    <span>جاري استدعاء البيانات وتجميع التقرير...</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <script type="module" src="js/reports.js"></script>
+</body>
+
+</html>

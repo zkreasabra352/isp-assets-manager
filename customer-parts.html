@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>قطع الزبائن - ISP Assets Manager</title>
+
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/customer-parts.css">
+</head>
+
+<body>
+
+    <!-- ================= SIDEBAR ================= -->
+    <aside class="sidebar" id="sidebar">
+
+        <div class="sidebar-header">
+            <div class="logo-box">
+                <span>ISP</span>
+            </div>
+
+            <div class="logo-text">
+                <h2>ISP Assets</h2>
+                <span>Manager</span>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav">
+
+            <div class="nav-title">
+                الرئيسية
+            </div>
+
+            <a href="dashboard.html" class="nav-item">
+                <span class="nav-icon">⌂</span>
+                <span>الرئيسية</span>
+            </a>
+
+            <div class="nav-title">
+                إدارة القطع
+            </div>
+
+            <a href="parts.html" class="nav-item">
+                <span class="nav-icon">▣</span>
+                <span>القطع الأساسية</span>
+            </a>
+
+            <a href="customer-parts.html" class="nav-item active">
+                <span class="nav-icon">◫</span>
+                <span>قطع الزبائن</span>
+            </a>
+
+            <div class="nav-title">
+                النظام
+            </div>
+
+            <!-- قم باستبدال الرابط القديم بهذا الكود -->
+<a href="reports.html" class="nav-item">
+    <span class="nav-icon">▤</span>
+    <span>التقارير</span>
+</a>
+
+            <a href="logs.html" class="nav-item">
+            <span class="nav-icon">☷</span>
+            <span>السجلات</span>
+        </a>
+
+        </nav>
+
+        <div class="sidebar-footer">
+
+            <button id="logoutBtn" class="logout-btn">
+                <span>⇥</span>
+                تسجيل الخروج
+            </button>
+
+        </div>
+
+    </aside>
+
+    <!-- ================= MAIN ================= -->
+    <main class="main-content">
+
+        <!-- TOPBAR -->
+        <header class="topbar">
+
+            <button id="mobileMenuBtn" class="mobile-menu-btn">
+                ☰
+            </button>
+
+            <div class="topbar-title">
+                <h1>قطع الزبائن</h1>
+                <p>إدارة القطع الممنوحة للزبائن</p>
+            </div>
+
+            <div class="user-box">
+
+                <div class="user-avatar">
+                    <span id="userInitial">U</span>
+                </div>
+
+                <div class="user-info">
+                    <strong>المستخدم</strong>
+                    <span id="userEmail">...</span>
+                </div>
+
+            </div>
+
+        </header>
+
+        <!-- PAGE -->
+        <section class="page-content">
+
+            <!-- PAGE HEADER -->
+            <div class="page-header">
+
+                <div>
+                    <h2>إدارة قطع الزبائن</h2>
+
+                    <p>
+                        تسجيل ومتابعة القطع التي تم منحها للزبائن
+                    </p>
+                </div>
+
+                <button id="addCustomerPartBtn" class="btn btn-primary">
+
+                    <span>＋</span>
+
+                    إضافة قطعة
+
+                </button>
+
+            </div>
+
+            <!-- ================= STATS ================= -->
+
+            <div class="stats-grid">
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        ◫
+                    </div>
+
+                    <div class="stat-content">
+
+                        <span>إجمالي القطع</span>
+
+                        <strong id="totalCustomerParts">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        👤
+                    </div>
+
+                    <div class="stat-content">
+
+                        <span>عدد الزبائن</span>
+
+                        <strong id="totalCustomers">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        🌐
+                    </div>
+
+                    <div class="stat-content">
+
+                        <span>عناوين IP</span>
+
+                        <strong id="totalCustomerIps">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        ▣
+                    </div>
+
+                    <div class="stat-content">
+
+                        <span>أنواع القطع</span>
+
+                        <strong id="totalCustomerTypes">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- ================= TOOLBAR ================= -->
+
+            <div class="table-card">
+
+                <div class="table-toolbar">
+
+                    <!-- SEARCH -->
+
+                    <div class="search-box">
+
+                        <span class="search-icon">
+                            ⌕
+                        </span>
+
+                        <input
+                            type="text"
+                            id="searchInput"
+                            placeholder="ابحث باسم الزبون، IP، MAC..."
+                            autocomplete="off">
+
+                    </div>
+
+                    <!-- FILTER -->
+
+                    <div class="filter-group">
+
+                        <select id="typeFilter">
+
+                            <option value="">
+                                جميع الأنواع
+                            </option>
+
+                        </select>
+
+                        <select id="dateFilter">
+
+                            <option value="">
+                                جميع التواريخ
+                            </option>
+
+                            <option value="today">
+                                اليوم
+                            </option>
+
+                            <option value="week">
+                                هذا الأسبوع
+                            </option>
+
+                            <option value="month">
+                                هذا الشهر
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                    <!-- ACTIONS -->
+
+                    <div class="toolbar-actions">
+
+                        <button
+                            id="editBtn"
+                            class="btn btn-secondary"
+                            disabled>
+
+                            ✎
+                            تعديل
+
+                        </button>
+
+                        <button
+                            id="deleteBtn"
+                            class="btn btn-danger"
+                            disabled>
+
+                            ×
+                            حذف
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <!-- ================= SELECTION BAR ================= -->
+
+                <div
+                    id="selectionBar"
+                    class="selection-bar hidden">
+
+                    <div>
+
+                        <strong>
+                            تم تحديد
+                            <span id="selectedCount">0</span>
+                            قطعة
+                        </strong>
+
+                    </div>
+
+                    <button id="clearSelectionBtn">
+                        إلغاء التحديد
+                    </button>
+
+                </div>
+
+                <!-- ================= TABLE ================= -->
+
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th class="checkbox-column">
+
+                                    <input
+                                        type="checkbox"
+                                        id="headerSelectAll">
+
+                                </th>
+
+                                <th>
+                                    اسم الزبون
+                                </th>
+
+                                <th>
+                                    نوع القطعة
+                                </th>
+
+                                <th>
+                                    IP
+                                </th>
+
+                                <th>
+                                    MAC
+                                </th>
+
+                                <th>
+                                    تاريخ المنح
+                                </th>
+
+                                <th>
+                                    تاريخ الإضافة
+                                </th>
+
+                                <th>
+                                    الملاحظة
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="customerPartsTableBody">
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+                <!-- EMPTY STATE -->
+
+                <div
+                    id="emptyState"
+                    class="empty-state">
+
+                    <div class="empty-icon">
+                        ◫
+                    </div>
+
+                    <h3>
+                        لا توجد قطع زبائن
+                    </h3>
+
+                    <p>
+                        لم تتم إضافة أي قطعة للزبائن حتى الآن.
+                    </p>
+
+                    <button
+                        id="emptyAddBtn"
+                        class="btn btn-primary">
+
+                        ＋ إضافة أول قطعة
+
+                    </button>
+
+                </div>
+
+                <!-- LOADING -->
+
+                <div
+                    id="loadingState"
+                    class="loading-state">
+
+                    <div class="loader"></div>
+
+                    <span>
+                        جاري تحميل البيانات...
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- FOOTER -->
+
+        <footer class="page-footer">
+
+            <span>
+                ISP Assets Manager
+            </span>
+
+            <span>
+                إدارة قطع الزبائن
+            </span>
+
+        </footer>
+
+    </main>
+
+    <!-- ================= ADD / EDIT MODAL ================= -->
+
+    <div
+        id="customerPartModal"
+        class="modal-overlay">
+
+        <div class="modal">
+
+            <div class="modal-header">
+
+                <div>
+
+                    <h2 id="modalTitle">
+                        إضافة قطعة للزبون
+                    </h2>
+
+                    <p>
+                        أدخل بيانات القطعة والزبون
+                    </p>
+
+                </div>
+
+                <button
+                    id="closeModalBtn"
+                    class="modal-close">
+
+                    ×
+
+                </button>
+
+            </div>
+
+            <form id="customerPartForm">
+
+                <!-- CUSTOMER NAME -->
+
+                <div class="form-group">
+
+                    <label for="customerName">
+
+                        اسم الزبون
+
+                        <span>*</span>
+
+                    </label>
+
+                    <input
+                        type="text"
+                        id="customerName"
+                        placeholder="أدخل اسم الزبون"
+                        required>
+
+                </div>
+
+                <!-- TYPE -->
+
+                <div class="form-group">
+
+                    <label for="customerPartType">
+
+                        نوع القطعة
+
+                        <span>*</span>
+
+                    </label>
+
+                    <select
+                        id="customerPartType"
+                        required>
+
+                        <option value="">
+                            اختر نوع القطعة
+                        </option>
+
+                        <option value="Rocket">
+                            Rocket
+                        </option>
+
+                        <option value="PowerBeam">
+                            PowerBeam
+                        </option>
+
+                        <option value="SXT">
+                            SXT
+                        </option>
+
+                        <option value="Router">
+                            Router
+                        </option>
+
+                        <option value="Switch">
+                            Switch
+                        </option>
+
+                        <option value="Access Point">
+                            Access Point
+                        </option>
+
+                        <option value="Other">
+                            Other
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <!-- IP + MAC -->
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label for="customerPartIp">
+
+                            IP
+
+                            <span>*</span>
+
+                        </label>
+
+                        <input
+                            type="text"
+                            id="customerPartIp"
+                            placeholder="192.168.1.10"
+                            dir="ltr"
+                            required>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="customerPartMac">
+
+                            MAC
+
+                            <small>
+                                اختياري
+                            </small>
+
+                        </label>
+
+                        <input
+                            type="text"
+                            id="customerPartMac"
+                            placeholder="00:11:22:33:44:55"
+                            dir="ltr">
+
+                    </div>
+
+                </div>
+
+                <!-- GRANT DATE -->
+
+                <div class="form-group">
+
+                    <label for="grantDate">
+
+                        تاريخ المنح
+
+                        <span>*</span>
+
+                    </label>
+
+                    <input
+                        type="date"
+                        id="grantDate"
+                        required>
+
+                </div>
+
+                <!-- NOTE -->
+
+                <div class="form-group">
+
+                    <label for="customerPartNote">
+
+                        ملاحظة
+
+                        <small>
+                            اختياري
+                        </small>
+
+                    </label>
+
+                    <textarea
+                        id="customerPartNote"
+                        rows="3"
+                        placeholder="أضف ملاحظة إن وجدت..."></textarea>
+
+                </div>
+
+                <!-- BUTTONS -->
+
+                <div class="modal-footer">
+
+                    <button
+                        type="button"
+                        id="cancelModalBtn"
+                        class="btn btn-secondary">
+
+                        إلغاء
+
+                    </button>
+
+                    <button
+                        type="submit"
+                        id="saveCustomerPartBtn"
+                        class="btn btn-primary">
+
+                        حفظ القطعة
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    <!-- ================= DELETE MODAL ================= -->
+
+    <div
+        id="deleteModal"
+        class="modal-overlay">
+
+        <div class="confirm-modal">
+
+            <div class="confirm-icon">
+                !
+            </div>
+
+            <h2>
+                تأكيد الحذف
+            </h2>
+
+            <p id="deleteMessage">
+                هل أنت متأكد من حذف القطعة المحددة؟
+            </p>
+
+            <div class="confirm-actions">
+
+                <button
+                    id="cancelDeleteBtn"
+                    class="btn btn-secondary">
+
+                    إلغاء
+
+                </button>
+
+                <button
+                    id="confirmDeleteBtn"
+                    class="btn btn-danger">
+
+                    حذف
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ================= TOAST ================= -->
+
+    <div
+        id="toast"
+        class="toast">
+
+        <span id="toastIcon">
+            ✓
+        </span>
+
+        <span id="toastMessage">
+            تمت العملية بنجاح
+        </span>
+
+    </div>
+
+    <script type="module" src="./js/customer-parts.js"></script>
+
+</body>
+
+</html>

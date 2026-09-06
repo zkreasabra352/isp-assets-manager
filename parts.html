@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>قطع الشبكة | ISP Assets Manager</title>
+
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/parts.css">
+</head>
+
+<body>
+
+    <!-- =========================
+         Sidebar
+    ========================== -->
+    <aside class="sidebar">
+
+        <div class="sidebar-logo">
+            <div class="logo-mark">ISP</div>
+
+            <div>
+                <h2>ISP Assets</h2>
+                <span>Manager</span>
+            </div>
+        </div>
+
+
+        <nav class="sidebar-nav">
+
+            <div class="nav-title">
+                الرئيسية
+            </div>
+
+            <a href="dashboard.html" class="nav-item">
+                <span class="nav-icon">⌂</span>
+                <span>لوحة التحكم</span>
+            </a>
+
+
+            <div class="nav-title">
+                إدارة الأصول
+            </div>
+
+            <a href="parts.html" class="nav-item active">
+                <span class="nav-icon">▣</span>
+                <span>قطع الشبكة</span>
+            </a>
+
+            <a href="customer-parts.html" class="nav-item">
+                <span class="nav-icon">▤</span>
+                <span>قطع الزبائن</span>
+            </a>
+
+
+            <div class="nav-title">
+                النظام
+            </div>
+
+            <!-- قم باستبدال الرابط القديم بهذا الكود -->
+<a href="reports.html" class="nav-item">
+    <span class="nav-icon">▤</span>
+    <span>التقارير</span>
+</a>
+
+            <a href="logs.html" class="nav-item">
+            <span class="nav-icon">☷</span>
+            <span>السجلات</span>
+        </a>
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <div class="sidebar-user">
+
+                <div class="user-avatar">
+                    <span>U</span>
+                </div>
+
+                <div class="user-info">
+                    <strong>المستخدم</strong>
+                    <span id="sidebarUserEmail">جاري التحميل...</span>
+                </div>
+
+            </div>
+
+            <button id="logoutBtn" class="logout-btn">
+                <span>↪</span>
+                تسجيل الخروج
+            </button>
+
+        </div>
+
+    </aside>
+
+
+    <!-- =========================
+         Main Content
+    ========================== -->
+    <main class="main-content">
+
+
+        <!-- Topbar -->
+        <header class="topbar">
+
+            <div class="topbar-right">
+
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    ☰
+                </button>
+
+                <div>
+                    <span class="breadcrumb">إدارة الأصول / قطع الشبكة</span>
+                    <h1>قطع الشبكة</h1>
+                </div>
+
+            </div>
+
+
+            <div class="topbar-user">
+
+                <div class="topbar-user-avatar">
+                    U
+                </div>
+
+                <div>
+                    <strong id="topbarUserEmail">
+                        جاري التحميل...
+                    </strong>
+
+                    <span>
+                        مستخدم النظام
+                    </span>
+                </div>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- Page Header -->
+        <section class="page-header">
+
+            <div>
+
+                <div class="page-title-row">
+
+                    <div class="page-title-icon">
+                        ▣
+                    </div>
+
+                    <div>
+
+                        <h2>
+                            إدارة قطع الشبكة
+                        </h2>
+
+                        <p>
+                            إدارة ومتابعة جميع معدات وقطع الشبكة المسجلة في النظام
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <button id="addPartBtn" class="primary-btn">
+
+                <span class="btn-icon">＋</span>
+
+                إضافة قطعة
+
+            </button>
+
+        </section>
+
+
+
+        <!-- Statistics -->
+        <section class="parts-stats">
+
+            <div class="mini-stat">
+
+                <div class="mini-stat-icon blue">
+                    ▣
+                </div>
+
+                <div>
+
+                    <span>
+                        إجمالي القطع
+                    </span>
+
+                    <strong id="totalParts">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="mini-stat">
+
+                <div class="mini-stat-icon green">
+                    ✓
+                </div>
+
+                <div>
+
+                    <span>
+                        القطع المحددة
+                    </span>
+
+                    <strong id="selectedParts">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="mini-stat">
+
+                <div class="mini-stat-icon purple">
+                    ◈
+                </div>
+
+                <div>
+
+                    <span>
+                        أنواع القطع
+                    </span>
+
+                    <strong id="totalTypes">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="mini-stat">
+
+                <div class="mini-stat-icon orange">
+                    ◉
+                </div>
+
+                <div>
+
+                    <span>
+                        السيرفرات
+                    </span>
+
+                    <strong id="totalServers">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- Toolbar -->
+        <section class="table-card">
+
+
+            <div class="table-toolbar">
+
+
+                <div class="toolbar-title">
+
+                    <h3>
+                        قائمة القطع
+                    </h3>
+
+                    <span id="resultsCount">
+                        0 قطعة
+                    </span>
+
+                </div>
+
+
+                <div class="toolbar-actions">
+
+
+                    <!-- Search -->
+                    <div class="search-box">
+
+                        <span class="search-icon">
+                            ⌕
+                        </span>
+
+                        <input
+                            type="text"
+                            id="searchInput"
+                            placeholder="ابحث عن اسم، IP، MAC..."
+                            autocomplete="off"
+                        >
+
+                    </div>
+
+
+                    <!-- Type Filter -->
+                    <select id="typeFilter" class="filter-select">
+
+                        <option value="">
+                            كل الأنواع
+                        </option>
+
+                    </select>
+
+
+                    <!-- Server Filter -->
+                    <select id="serverFilter" class="filter-select">
+
+                        <option value="">
+                            كل السيرفرات
+                        </option>
+
+                    </select>
+
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Selection Toolbar -->
+            <div class="selection-toolbar">
+
+                <div class="selection-info">
+
+                    <label class="select-all-label">
+
+                        <input
+                            type="checkbox"
+                            id="selectAll"
+                        >
+
+                        <span>
+                            تحديد الكل
+                        </span>
+
+                    </label>
+
+                    <span
+                        id="selectionText"
+                        class="selection-text"
+                    >
+                        لم يتم تحديد أي قطعة
+                    </span>
+
+                </div>
+
+
+                <div class="selection-actions">
+
+                    <button
+                        id="editBtn"
+                        class="secondary-btn"
+                        disabled
+                    >
+
+                        <span>
+                            ✎
+                        </span>
+
+                        تعديل
+
+                    </button>
+
+
+                    <button
+                        id="deleteBtn"
+                        class="danger-btn"
+                        disabled
+                    >
+
+                        <span>
+                            ×
+                        </span>
+
+                        حذف
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Table -->
+            <div class="table-wrapper">
+
+                <table class="parts-table">
+
+                    <thead>
+
+                        <tr>
+
+                            <th class="check-column">
+                                <input
+                                    type="checkbox"
+                                    id="headerSelectAll"
+                                >
+                            </th>
+
+                            <th>
+                                اسم القطعة
+                            </th>
+
+                            <th>
+                                النوع
+                            </th>
+
+                            <th>
+                                IP
+                            </th>
+
+                            <th>
+                                MAC
+                            </th>
+
+                            <th>
+                                السيرفر
+                            </th>
+
+                            <th>
+                                تاريخ الإضافة
+                            </th>
+
+                            <th>
+                                الملاحظة
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="partsTableBody">
+
+                        <tr>
+
+                            <td colspan="8" class="loading-cell">
+
+                                <div class="loading-spinner"></div>
+
+                                <span>
+                                    جاري تحميل البيانات...
+                                </span>
+
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+
+
+            <!-- Empty State -->
+            <div
+                id="emptyState"
+                class="empty-state hidden"
+            >
+
+                <div class="empty-icon">
+                    ▣
+                </div>
+
+                <h3>
+                    لا توجد قطع
+                </h3>
+
+                <p>
+                    لم يتم العثور على أي قطعة مطابقة للبحث أو الفلترة.
+                </p>
+
+                <button
+                    id="emptyAddBtn"
+                    class="primary-btn"
+                >
+                    ＋ إضافة أول قطعة
+                </button>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- Footer -->
+        <footer class="page-footer">
+
+            <span>
+                ISP Assets Manager
+            </span>
+
+            <span>
+                نظام إدارة أصول الشبكة
+            </span>
+
+        </footer>
+
+
+    </main>
+
+
+
+    <!-- =========================
+         Add/Edit Modal
+    ========================== -->
+
+    <div
+        id="partModal"
+        class="modal-overlay"
+    >
+
+        <div class="part-modal">
+
+
+            <div class="modal-header">
+
+                <div class="modal-title">
+
+                    <div class="modal-icon">
+                        ▣
+                    </div>
+
+                    <div>
+
+                        <h3 id="modalTitle">
+                            إضافة قطعة جديدة
+                        </h3>
+
+                        <p>
+                            أدخل معلومات قطعة الشبكة
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <button
+                    id="closeModalBtn"
+                    class="modal-close"
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+
+            <form id="partForm">
+
+
+                <div class="form-body">
+
+
+                    <!-- Name -->
+                    <div class="form-group">
+
+                        <label for="partName">
+                            اسم القطعة
+                            <span>*</span>
+                        </label>
+
+                        <input
+                            type="text"
+                            id="partName"
+                            placeholder="مثال: Rocket 01"
+                            required
+                        >
+
+                    </div>
+
+
+
+                    <!-- Type -->
+                    <div class="form-group">
+
+                        <label for="partType">
+                            نوع القطعة
+                            <span>*</span>
+                        </label>
+
+                        <select id="partType" required>
+
+                            <option value="">
+                                اختر نوع القطعة
+                            </option>
+
+                            <option value="Rocket">
+                                Rocket
+                            </option>
+
+                            <option value="PowerBeam">
+                                PowerBeam
+                            </option>
+
+                            <option value="SXT">
+                                SXT
+                            </option>
+
+                            <option value="Router">
+                                Router
+                            </option>
+
+                            <option value="Switch">
+                                Switch
+                            </option>
+
+                            <option value="Access Point">
+                                Access Point
+                            </option>
+
+                            <option value="Other">
+                                Other
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+
+                    <!-- IP -->
+                    <div class="form-group">
+
+                        <label for="partIp">
+                            عنوان IP
+                            <span>*</span>
+                        </label>
+
+                        <input
+                            type="text"
+                            id="partIp"
+                            placeholder="مثال: 192.168.1.2"
+                            required
+                            dir="ltr"
+                        >
+
+                    </div>
+
+
+
+                    <!-- MAC -->
+                    <div class="form-group">
+
+                        <label for="partMac">
+                            MAC Address
+                            <small>
+                                اختياري
+                            </small>
+                        </label>
+
+                        <input
+                            type="text"
+                            id="partMac"
+                            placeholder="مثال: AA:BB:CC:DD:EE:FF"
+                            dir="ltr"
+                        >
+
+                    </div>
+
+
+
+                    <!-- Server -->
+                    <div class="form-group">
+
+                        <label for="partServer">
+                            السيرفر
+                            <span>*</span>
+                        </label>
+
+                        <select id="partServer" required>
+
+                            <option value="">
+                                اختر السيرفر
+                            </option>
+
+                            <option value="Server 1">
+                                Server 1
+                            </option>
+
+                            <option value="Server 2">
+                                Server 2
+                            </option>
+
+                            <option value="Server 3">
+                                Server 3
+                            </option>
+
+                            <option value="Server 4">
+                                Server 4
+                            </option>
+
+                            <option value="Other">
+                                Other
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+
+                    <!-- Note -->
+                    <div class="form-group full-width">
+
+                        <label for="partNote">
+                            الملاحظة
+                            <small>
+                                اختياري
+                            </small>
+                        </label>
+
+                        <textarea
+                            id="partNote"
+                            rows="3"
+                            placeholder="أضف أي ملاحظات حول القطعة..."
+                        ></textarea>
+
+                    </div>
+
+
+                </div>
+
+
+
+                <div class="modal-footer">
+
+                    <button
+                        type="button"
+                        id="cancelModalBtn"
+                        class="cancel-btn"
+                    >
+                        إلغاء
+                    </button>
+
+                    <button
+                        type="submit"
+                        id="savePartBtn"
+                        class="primary-btn"
+                    >
+
+                        <span id="saveBtnText">
+                            حفظ القطعة
+                        </span>
+
+                    </button>
+
+                </div>
+
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =========================
+         Delete Confirmation
+    ========================== -->
+
+    <div
+        id="deleteModal"
+        class="modal-overlay"
+    >
+
+        <div class="confirm-modal">
+
+            <div class="confirm-icon">
+                !
+            </div>
+
+            <h3>
+                تأكيد الحذف
+            </h3>
+
+            <p id="deleteMessage">
+                هل أنت متأكد من حذف القطعة المحددة؟
+            </p>
+
+            <div class="confirm-actions">
+
+                <button
+                    id="cancelDeleteBtn"
+                    class="cancel-btn"
+                >
+                    إلغاء
+                </button>
+
+                <button
+                    id="confirmDeleteBtn"
+                    class="danger-btn"
+                >
+                    نعم، حذف
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =========================
+         Toast
+    ========================== -->
+
+    <div
+        id="toast"
+        class="toast"
+    >
+
+        <div
+            id="toastIcon"
+            class="toast-icon"
+        >
+            ✓
+        </div>
+
+        <div>
+
+            <strong id="toastTitle">
+                تم بنجاح
+            </strong>
+
+            <span id="toastMessage">
+                تمت العملية بنجاح
+            </span>
+
+        </div>
+
+    </div>
+
+
+
+    <script type="module" src="js/parts.js"></script>
+
+</body>
+
+</html>

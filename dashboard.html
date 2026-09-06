@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>الرئيسية - ISP Assets Manager</title>
+
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+
+</head>
+
+<body>
+
+    <div class="app-layout">
+
+        <!-- =========================
+             Sidebar
+        ========================== -->
+
+        <aside class="sidebar" id="sidebar">
+
+            <div class="sidebar-logo">
+
+                <div class="logo-box">
+                    ISP
+                </div>
+
+                <div class="logo-text">
+
+                    <strong>ISP Assets</strong>
+
+                    <span>Manager</span>
+
+                </div>
+
+            </div>
+
+            <div class="sidebar-section">
+
+                <span class="sidebar-title">
+                    الرئيسية
+                </span>
+
+                <nav class="sidebar-nav">
+
+                    <a href="dashboard.html" class="nav-item active">
+
+                        <span class="nav-icon">⌂</span>
+
+                        <span>لوحة التحكم</span>
+
+                    </a>
+
+                    <a href="parts.html" class="nav-item">
+
+                        <span class="nav-icon">▣</span>
+
+                        <span>قطع الشبكة</span>
+
+                    </a>
+
+                    <a href="customer-parts.html" class="nav-item">
+
+                        <span class="nav-icon">♙</span>
+
+                        <span>قطع الزبائن</span>
+
+                    </a>
+
+                </nav>
+
+            </div>
+
+            <div class="sidebar-section">
+
+                <span class="sidebar-title">
+                    النظام
+                </span>
+
+                <nav class="sidebar-nav">
+
+                    <!-- قم باستبدال الرابط القديم بهذا الكود -->
+<a href="reports.html" class="nav-item">
+    <span class="nav-icon">▤</span>
+    <span>التقارير</span>
+</a>
+
+                    <a href="logs.html" class="nav-item">
+            <span class="nav-icon">☷</span>
+            <span>السجلات</span>
+        </a>
+
+                    <a href="#" class="nav-item disabled">
+
+                        <span class="nav-icon">⚙</span>
+
+                        <span>الإعدادات</span>
+
+                        <small>قريباً</small>
+
+                    </a>
+
+                </nav>
+
+            </div>
+
+            <div class="sidebar-bottom">
+
+                <button id="logoutButton" class="logout-button">
+
+                    <span class="nav-icon">↪</span>
+
+                    <span>تسجيل الخروج</span>
+
+                </button>
+
+            </div>
+
+        </aside>
+
+        <!-- =========================
+             Main Content
+        ========================== -->
+
+        <main class="main-content">
+
+            <!-- Header -->
+
+            <header class="topbar">
+
+                <div>
+
+                    <span class="page-label">
+                        لوحة التحكم
+                    </span>
+
+                    <h1>
+                        الرئيسية
+                    </h1>
+
+                </div>
+
+                <div class="topbar-user">
+
+                    <div class="user-status">
+
+                        <span class="status-dot"></span>
+
+                        <span>متصل</span>
+
+                    </div>
+
+                    <div class="user-avatar" id="userAvatar">
+                        U
+                    </div>
+
+                    <div class="user-info">
+
+                        <strong id="userEmail">
+                            المستخدم
+                        </strong>
+
+                        <span>
+                            مدير النظام
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </header>
+
+            <!-- Welcome -->
+
+            <section class="welcome-section">
+
+                <div>
+
+                    <span class="welcome-small">
+                        مرحباً بك 👋
+                    </span>
+
+                    <h2>
+                        إدارة أصول الشبكة بسهولة
+                    </h2>
+
+                    <p>
+                        تابع قطع الشبكة الخاصة بك وقطع الزبائن واستعرض أحدث البيانات المضافة.
+                    </p>
+
+                </div>
+
+                <div class="welcome-decoration">
+
+                    <span>ISP</span>
+
+                </div>
+
+            </section>
+
+            <!-- Statistics -->
+
+            <section class="stats-grid">
+
+                <div class="stat-card">
+
+                    <div class="stat-icon blue">
+                        ▣
+                    </div>
+
+                    <div class="stat-data">
+
+                        <span>
+                            إجمالي قطع الشبكة
+                        </span>
+
+                        <strong id="totalParts">
+                            0
+                        </strong>
+
+                    </div>
+
+                    <div class="stat-arrow">
+                        ↑
+                    </div>
+
+                </div>
+
+                <div class="stat-card">
+
+                    <div class="stat-icon green">
+                        ♙
+                    </div>
+
+                    <div class="stat-data">
+
+                        <span>
+                            قطع الزبائن
+                        </span>
+
+                        <strong id="totalCustomerParts">
+                            0
+                        </strong>
+
+                    </div>
+
+                    <div class="stat-arrow">
+                        ↑
+                    </div>
+
+                </div>
+
+                <div class="stat-card">
+
+                    <div class="stat-icon purple">
+                        ◉
+                    </div>
+
+                    <div class="stat-data">
+
+                        <span>
+                            عناوين IP النشطة
+                        </span>
+
+                        <strong id="totalIps">
+                            0
+                        </strong>
+
+                    </div>
+
+                    <div class="stat-arrow">
+                        ↑
+                    </div>
+
+                </div>
+
+                <div class="stat-card">
+
+                    <div class="stat-icon orange">
+                        ◈
+                    </div>
+
+                    <div class="stat-data">
+
+                        <span>
+                            أنواع القطع
+                        </span>
+
+                        <strong id="totalTypes">
+                            0
+                        </strong>
+
+                    </div>
+
+                    <div class="stat-arrow">
+                        ↑
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!-- Content Grid -->
+
+            <section class="dashboard-grid">
+
+                <!-- Recent Parts -->
+
+                <div class="dashboard-card recent-card">
+
+                    <div class="card-header">
+
+                        <div>
+
+                            <span class="card-label">
+                                النشاط
+                            </span>
+
+                            <h3>
+                                أحدث القطع المضافة (الشبكة)
+                            </h3>
+
+                        </div>
+
+                        <a href="parts.html" class="view-all">
+                            عرض الكل
+                            ←
+                        </a>
+
+                    </div>
+
+                    <div class="table-wrapper">
+
+                        <table>
+
+                            <thead>
+
+                                <tr>
+
+                                    <th>
+                                        الاسم
+                                    </th>
+
+                                    <th>
+                                        النوع
+                                    </th>
+
+                                    <th>
+                                        IP
+                                    </th>
+
+                                    <th>
+                                        السيرفر
+                                    </th>
+
+                                    <th>
+                                        التاريخ
+                                    </th>
+
+                                </tr>
+
+                            </thead>
+
+                            <tbody id="recentPartsTable">
+
+                                <tr>
+
+                                    <td colspan="5" class="loading-cell">
+                                        جاري تحميل البيانات...
+                                    </td>
+
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+                <!-- Quick Info -->
+
+                <div class="dashboard-card system-card">
+
+                    <div class="card-header">
+
+                        <div>
+
+                            <span class="card-label">
+                                النظام
+                            </span>
+
+                            <h3>
+                                حالة النظام
+                            </h3>
+
+                        </div>
+
+                    </div>
+
+                    <div class="system-status">
+
+                        <div class="system-status-icon">
+                            ✓
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                النظام يعمل بشكل طبيعي
+                            </strong>
+
+                            <span>
+                                الاتصال بقاعدة البيانات نشط
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                    <div class="system-details">
+
+                        <div>
+
+                            <span>
+                                قاعدة البيانات
+                            </span>
+
+                            <strong>
+                                Firestore
+                            </strong>
+
+                        </div>
+
+                        <div>
+
+                            <span>
+                                المصادقة
+                            </span>
+
+                            <strong>
+                                Firebase Auth
+                            </strong>
+
+                        </div>
+
+                        <div>
+
+                            <span>
+                                حالة الحساب
+                            </span>
+
+                            <strong class="online-text">
+                                متصل
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!-- Footer -->
+
+            <footer class="dashboard-footer">
+
+                <span>
+                    ISP Assets Manager
+                </span>
+
+                <span>
+                    نظام إدارة أصول الشبكة
+                </span>
+
+            </footer>
+
+        </main>
+
+    </div>
+
+    <script type="module" src="js/dashboard.js"></script>
+
+</body>
+
+</html>

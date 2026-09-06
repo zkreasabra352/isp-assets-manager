@@ -1,0 +1,243 @@
+/* =========================================================
+   REPORTS - MODERN GLASSMORPHISM DESIGN
+   ========================================================= */
+
+:root {
+    --bg-dark: #0f172a;
+    --card-bg: rgba(30, 41, 59, 0.7);
+    --border-glow: rgba(255, 255, 255, 0.1);
+    --primary-gradient: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+    --excel-gradient: linear-gradient(135deg, #10b981 0%, #047857 100%);
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+}
+
+body {
+    background: #090d16;
+    color: var(--text-main);
+    font-family: 'Cairo', system-ui, -apple-system, sans-serif;
+}
+
+/* Glassmorphism Cards */
+.glass-card {
+    background: var(--card-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--border-glow);
+    border-radius: 20px;
+    padding: 24px;
+    margin-top: 24px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+.card-header-gradient {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid var(--border-glow);
+    margin-bottom: 20px;
+}
+
+.header-icon {
+    font-size: 26px;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 10px 14px;
+    border-radius: 12px;
+    border: 1px solid var(--border-glow);
+}
+
+.card-header-gradient h3 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.card-header-gradient p {
+    margin: 4px 0 0;
+    color: var(--text-muted);
+    font-size: 12px;
+}
+
+/* Filter Grid & Glass Inputs */
+.filter-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 18px;
+}
+
+.form-group label {
+    font-size: 12px;
+    color: var(--text-muted);
+    font-weight: 600;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.glass-input {
+    width: 100%;
+    height: 46px;
+    padding: 0 16px;
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid var(--border-glow);
+    border-radius: 12px;
+    color: var(--text-main);
+    outline: none;
+    font-family: inherit;
+    font-size: 13px;
+    transition: all 0.3s ease;
+}
+
+.glass-input:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 15px rgba(59, 130, 246, 0.3);
+}
+
+/* Action Buttons */
+.report-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 24px;
+    padding-top: 18px;
+    border-top: 1px solid var(--border-glow);
+}
+
+.btn-action {
+    height: 46px;
+    padding: 0 24px;
+    border-radius: 12px;
+    border: none;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 700;
+    color: #fff;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-action:hover {
+    transform: translateY(-2px);
+}
+
+.btn-print {
+    background: var(--primary-gradient);
+    box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
+}
+
+.btn-excel {
+    background: var(--excel-gradient);
+    box-shadow: 0 8px 20px rgba(16, 185, 129, 0.3);
+}
+
+/* Stats Cards Pro */
+.stats-grid-reports {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 18px;
+    margin-top: 24px;
+}
+
+.stat-card-pro {
+    background: var(--card-bg);
+    border: 1px solid var(--border-glow);
+    border-radius: 18px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    position: relative;
+    overflow: hidden;
+}
+
+.stat-icon-glow {
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.stat-card-pro.blue .stat-icon-glow { color: #3b82f6; border: 1px solid rgba(59, 130, 246, 0.3); }
+.stat-card-pro.green .stat-icon-glow { color: #10b981; border: 1px solid rgba(16, 185, 129, 0.3); }
+.stat-card-pro.purple .stat-icon-glow { color: #a855f7; border: 1px solid rgba(168, 85, 247, 0.3); }
+
+.stat-info span { font-size: 12px; color: var(--text-muted); }
+.stat-info strong { font-size: 26px; display: block; margin-top: 4px; }
+
+/* Glass Table */
+.table-responsive {
+    overflow-x: auto;
+}
+
+.glass-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: right;
+}
+
+.glass-table th {
+    padding: 16px;
+    background: rgba(15, 23, 42, 0.8);
+    color: var(--text-muted);
+    font-size: 11px;
+    font-weight: 700;
+    border-bottom: 1px solid var(--border-glow);
+}
+
+.glass-table td {
+    padding: 16px;
+    border-bottom: 1px solid var(--border-glow);
+    font-size: 13px;
+    color: var(--text-main);
+}
+
+.glass-table tbody tr:hover {
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.badge-source {
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.badge-network { background: rgba(59, 130, 246, 0.15); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.3); }
+.badge-customer { background: rgba(168, 85, 247, 0.15); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.3); }
+
+/* Loader Spinner */
+.loading-state {
+    text-align: center;
+    padding: 40px !important;
+    color: var(--text-muted);
+}
+
+.spinner {
+    width: 28px;
+    height: 28px;
+    border: 3px solid rgba(255,255,255,0.1);
+    border-top-color: #3b82f6;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    margin: 0 auto 12px;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Print Mode Optimization */
+@media print {
+    body { background: #fff !important; color: #000 !important; }
+    .sidebar, .topbar, .filters-section, .stats-grid-reports, .sidebar-bottom { display: none !important; }
+    .main-content { margin: 0 !important; width: 100% !important; padding: 0 !important; }
+    .glass-card { background: #fff !important; border: none !important; box-shadow: none !important; padding: 0 !important; }
+    .print-header { display: block !important; text-align: center; margin-bottom: 30px; }
+    .glass-table th, .glass-table td { color: #000 !important; border: 1px solid #ddd !important; }
+}

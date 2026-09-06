@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سجلات النظام - ISP Assets Manager</title>
+
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/reports.css">
+    <link rel="stylesheet" href="css/logs.css">
+</head>
+
+<body>
+
+    <div class="app-layout">
+
+        <!-- ================= SIDEBAR ================= -->
+        <aside class="sidebar" id="sidebar">
+
+            <div class="sidebar-logo">
+                <div class="logo-box"><span>ISP</span></div>
+                <div class="logo-text">
+                    <strong>ISP Assets</strong>
+                    <span>Manager</span>
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <span class="sidebar-title">الرئيسية</span>
+                <nav class="sidebar-nav">
+                    <a href="dashboard.html" class="nav-item">
+                        <span class="nav-icon">⌂</span>
+                        <span>لوحة التحكم</span>
+                    </a>
+                    <a href="parts.html" class="nav-item">
+                        <span class="nav-icon">▣</span>
+                        <span>قطع الشبكة</span>
+                    </a>
+                    <a href="customer-parts.html" class="nav-item">
+                        <span class="nav-icon">♙</span>
+                        <span>قطع الزبائن</span>
+                    </a>
+                </nav>
+            </div>
+
+            <div class="sidebar-section">
+                <span class="sidebar-title">النظام</span>
+                <nav class="sidebar-nav">
+                    <a href="reports.html" class="nav-item">
+                        <span class="nav-icon">▤</span>
+                        <span>التقارير</span>
+                    </a>
+                    <a href="logs.html" class="nav-item">
+            <span class="nav-icon">☷</span>
+            <span>السجلات</span>
+        </a>
+                </nav>
+            </div>
+
+            <div class="sidebar-bottom">
+                <button id="logoutBtn" class="logout-button">
+                    <span class="nav-icon">↪</span>
+                    <span>تسجيل الخروج</span>
+                </button>
+            </div>
+
+        </aside>
+
+        <!-- ================= MAIN CONTENT ================= -->
+        <main class="main-content">
+
+            <!-- TOPBAR -->
+            <header class="topbar">
+                <div class="page-title-group">
+                    <span class="page-label">الأمان والمراقبة</span>
+                    <h1>سجلات العمليات والحركات</h1>
+                </div>
+
+                <div class="topbar-user">
+                    <div class="user-status">
+                        <span class="status-dot"></span>
+                        <span>متصل</span>
+                    </div>
+                    <div class="user-avatar" id="userAvatar">U</div>
+                    <div class="user-info">
+                        <strong id="userEmail">المستخدم</strong>
+                        <span>مدير النظام</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- CONTROLS & FILTERS -->
+            <section class="glass-card filters-section">
+                <div class="card-header-gradient">
+                    <div class="header-icon">🔍</div>
+                    <div>
+                        <h3>تصفية سجل الحركات</h3>
+                        <p>تتبع إجراءات الإضافة، التعديل، والحذف بالتفصيل</p>
+                    </div>
+                </div>
+
+                <div class="filter-grid">
+                    <div class="form-group">
+                        <label for="actionFilter">نوع العملية</label>
+                        <select id="actionFilter" class="glass-input">
+                            <option value="">جميع العمليات</option>
+                            <option value="إضافة">➕ إضافة جديد</option>
+                            <option value="تعديل">✏️ تعديل بيانات</option>
+                            <option value="حذف">🗑️ حذف سجل</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="sectionFilter">القسم</label>
+                        <select id="sectionFilter" class="glass-input">
+                            <option value="">كل الأقسام</option>
+                            <option value="قطع الشبكة">▣ قطع الشبكة</option>
+                            <option value="قطع الزبائن">♙ قطع الزبائن</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group" style="grid-column: span 2;">
+                        <label for="searchInput">بحث سريع</label>
+                        <input type="text" id="searchInput" class="glass-input" placeholder="ابحث باسم القطعة، الزبون، أو البريد الإلكتروني...">
+                    </div>
+                </div>
+            </section>
+
+            <!-- LOGS TIMELINE / TABLE -->
+            <section class="glass-card table-section">
+                <div class="table-responsive">
+                    <table class="glass-table">
+                        <thead>
+                            <tr>
+                                <th>الوقت والتاريخ</th>
+                                <th>نوع الحركة</th>
+                                <th>القسم</th>
+                                <th>تفاصيل العملية</th>
+                                <th>المستخدم المسؤول</th>
+                            </tr>
+                        </thead>
+                        <tbody id="logsTableBody">
+                            <tr>
+                                <td colspan="5" class="loading-state">
+                                    <div class="spinner"></div>
+                                    <span>جاري جلب سجلات الحركات...</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <script type="module" src="js/logs.js"></script>
+</body>
+
+</html>
