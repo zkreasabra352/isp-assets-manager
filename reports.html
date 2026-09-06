@@ -55,9 +55,9 @@
                         <span>التقارير</span>
                     </a>
                     <a href="logs.html" class="nav-item">
-            <span class="nav-icon">☷</span>
-            <span>السجلات</span>
-        </a>
+                        <span class="nav-icon">☷</span>
+                        <span>السجلات</span>
+                    </a>
                 </nav>
             </div>
 
@@ -173,37 +173,36 @@
             </section>
 
             <!-- REPORT TABLE -->
-            <section class="glass-card table-section print-area">
-                <div class="print-header">
-                    <div class="print-logo">ISP ASSETS MANAGER</div>
-                    <h2>تقرير أصول وسجلات الشبكة</h2>
-                    <p id="printDate"></p>
-                </div>
+<section class="glass-card table-section print-area">
+    <div class="print-header">
+        <div class="print-logo">ISP ASSETS MANAGER</div>
+        <h2>تقرير أصول وسجلات الشبكة</h2>
+        <p id="printDate"></p>
+    </div>
 
-                <div class="table-responsive">
-                    <table class="glass-table">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>الاسم / الزبون</th>
-                                <th>النوع / التصنيف</th>
-                                <th>المصدر</th>
-                                <th>عنوان IP</th>
-                                <th>عنوان MAC</th>
-                                <th>السيرفر / تاريخ المنح</th>
-                            </tr>
-                        </thead>
-                        <tbody id="reportsTableBody">
-                            <tr>
-                                <td colspan="7" class="loading-state">
-                                    <div class="spinner"></div>
-                                    <span>جاري استدعاء البيانات وتجميع التقرير...</span>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </section>
+    <div class="table-responsive">
+        <table class="glass-table">
+            <thead>
+                <tr>
+                    <th style="width: 6%;">#</th>
+                    <th style="width: 28%;">الاسم / الزبون</th>
+                    <th style="width: 18%;">النوع / التصنيف</th>
+                    <th style="width: 16%;">عنوان IP</th>
+                    <th style="width: 18%;">عنوان MAC</th>
+                    <th style="width: 14%;">السيرفر / التاريخ</th>
+                </tr>
+            </thead>
+            <tbody id="reportsTableBody">
+                <tr>
+                    <td colspan="6" class="loading-state">
+                        <div class="spinner"></div>
+                        <span>جاري استدعاء البيانات وتجميع التقرير...</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
 
         </main>
     </div>

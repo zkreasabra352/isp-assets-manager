@@ -203,16 +203,6 @@ body {
     background: rgba(255, 255, 255, 0.03);
 }
 
-.badge-source {
-    padding: 4px 10px;
-    border-radius: 20px;
-    font-size: 10px;
-    font-weight: 700;
-}
-
-.badge-network { background: rgba(59, 130, 246, 0.15); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.3); }
-.badge-customer { background: rgba(168, 85, 247, 0.15); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.3); }
-
 /* Loader Spinner */
 .loading-state {
     text-align: center;
@@ -232,12 +222,122 @@ body {
 
 @keyframes spin { to { transform: rotate(360deg); } }
 
-/* Print Mode Optimization */
+/* =========================================================
+   PRINT OPTIMIZATION
+   ========================================================= */
+/* =========================================================
+   PRINT OPTIMIZATION (HIGH-QUALITY A4 CENTERED REPORT)
+   ========================================================= */
 @media print {
-    body { background: #fff !important; color: #000 !important; }
-    .sidebar, .topbar, .filters-section, .stats-grid-reports, .sidebar-bottom { display: none !important; }
-    .main-content { margin: 0 !important; width: 100% !important; padding: 0 !important; }
-    .glass-card { background: #fff !important; border: none !important; box-shadow: none !important; padding: 0 !important; }
-    .print-header { display: block !important; text-align: center; margin-bottom: 30px; }
-    .glass-table th, .glass-table td { color: #000 !important; border: 1px solid #ddd !important; }
+    @page {
+        size: A4 portrait;
+        margin: 15mm 10mm;
+    }
+
+    /* إخفاء القوائم الجانبية والأزرار والواجهة */
+    .sidebar, .topbar, .filters-section, .report-actions, .stats-grid-reports, .sidebar-bottom, button {
+        display: none !important;
+    }
+
+    body {
+        background: #ffffff !important;
+        color: #000000 !important;
+        font-family: 'Cairo', system-ui, -apple-system, sans-serif !important;
+        direction: rtl !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    .main-content, .glass-card, .table-section {
+        background: #ffffff !important;
+        border: none !important;
+        box-shadow: none !important;
+        padding: 0 !important;
+        margin: 0 auto !important;
+        width: 100% !important;
+    }
+
+    /* الترويسة الرئيسية للتقرير */
+    .print-header {
+        display: block !important;
+        text-align: center !important;
+        margin-bottom: 25px !important;
+        border-bottom: 2px solid #1e293b !important;
+        padding-bottom: 12px !important;
+    }
+
+    .print-header h2 {
+        font-size: 18pt !important;
+        color: #0f172a !important;
+        margin: 0 0 6px 0 !important;
+        font-weight: 800 !important;
+    }
+
+    .print-header p {
+        font-size: 10pt !important;
+        color: #475569 !important;
+        margin: 0 !important;
+    }
+
+    .print-logo {
+        font-size: 10pt !important;
+        font-weight: bold !important;
+        letter-spacing: 2px !important;
+        color: #3b82f6 !important;
+        margin-bottom: 4px !important;
+    }
+
+    /* ضبط الجدول في منتصف الورقة وتوزيع الأعمدة بالكامل */
+    .table-responsive {
+        overflow: visible !important;
+        width: 100% !important;
+    }
+
+    table.glass-table {
+        width: 100% !important;
+        border-collapse: collapse !important;
+        margin: 0 auto !important;
+        table-layout: fixed !important; /* ضمان التوزيع المتناسق للمناطق */
+    }
+
+    table.glass-table th {
+        background-color: #f1f5f9 !important;
+        color: #0f172a !important;
+        font-size: 10pt !important;
+        font-weight: bold !important;
+        border: 1px solid #64748b !important;
+        padding: 8px 4px !important;
+        text-align: center !important;
+    }
+
+    table.glass-table td {
+        border: 1px solid #cbd5e1 !important;
+        padding: 8px 4px !important;
+        font-size: 9.5pt !important;
+        color: #000000 !important;
+        text-align: center !important;
+        vertical-align: middle !important;
+        word-wrap: break-word !important;
+    }
+
+    /* التوزيع الدقيق والأنيق لنسب عرض الأعمدة */
+    table.glass-table th:nth-child(1) { width: 6%; }  /* الرقم */
+    table.glass-table th:nth-child(2) { width: 28%; text-align: right !important; } /* الاسم / الزبون */
+    table.glass-table th:nth-child(3) { width: 18%; } /* النوع */
+    table.glass-table th:nth-child(4) { width: 16%; } /* IP */
+    table.glass-table th:nth-child(5) { width: 18%; } /* MAC */
+    table.glass-table th:nth-child(6) { width: 14%; } /* السيرفر */
+
+    table.glass-table td:nth-child(2) {
+        text-align: right !important; /* الاسم محاذاة لليمن */
+        padding-right: 8px !important;
+    }
+
+    /* تنسيق IP والـ MAC بخط برجمي عريض لتفادي التداخل */
+    .mac-column, .ip-column {
+        font-family: 'Consolas', 'Courier New', monospace !important;
+        direction: ltr !important;
+        text-align: center !important;
+        font-weight: bold !important;
+    }
 }
