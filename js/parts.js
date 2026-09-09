@@ -137,23 +137,17 @@ const emptyState =
    FORM ELEMENTS
 ========================================= */
 
-const partName =
-    document.getElementById("partName");
+const partName = document.getElementById("partName");
 
-const partType =
-    document.getElementById("partType");
+const partType = document.getElementById("partType");
 
-const partIp =
-    document.getElementById("partIp");
+const partIp = document.getElementById("partIp");
 
-const partMac =
-    document.getElementById("partMac");
-
-const partServer =
-    document.getElementById("partServer");
-
-const partNote =
-    document.getElementById("partNote");
+const partMac = document.getElementById("partMac");
+const partFrequency = document.getElementById("partFrequency");
+const partChannelWidth = document.getElementById("partChannelWidth");
+const partServer = document.getElementById("partServer");
+const partNote = document.getElementById("partNote");
 
 
 /* =========================================
@@ -430,6 +424,8 @@ function applyFilters() {
                 part.type,
                 part.ip,
                 part.mac,
+                part.frequency,
+            part.channelWidth,
                 part.server,
                 part.note
 
@@ -482,173 +478,68 @@ function applyFilters() {
 function renderTable() {
 
     if (resultsCount) {
-        resultsCount.textContent =
-            `${filteredParts.length} قطعة`;
+        resultsCount.textContent = `${filteredParts.length} قطعة`;
     }
-
 
     if (filteredParts.length === 0) {
-
         if (partsTableBody) partsTableBody.innerHTML = "";
-
         if (emptyState) emptyState.classList.remove("hidden");
-
         updateSelectAllState();
-
         return;
-
     }
-
 
     if (emptyState) emptyState.classList.add("hidden");
 
-
     if (partsTableBody) {
-        partsTableBody.innerHTML =
-            filteredParts.map(part => {
+        partsTableBody.innerHTML = filteredParts.map(part => {
 
-                const checked =
-                    selectedIds.has(part.id)
-                        ? "checked"
-                        : "";
+            const checked = selectedIds.has(part.id) ? "checked" : "";
+            const createdAt = formatDate(part.createdAt);
 
-
-                const createdAt =
-                    formatDate(part.createdAt);
-
-
-                return `
-
-                    <tr
-                        data-id="${escapeAttribute(part.id)}"
-                        class="${
-                            selectedIds.has(part.id)
-                                ? "selected"
-                                : ""
-                        }"
-                    >
-
-                        <td class="check-column">
-
-                            <input
-                                type="checkbox"
-                                class="part-checkbox"
-                                data-id="${escapeAttribute(part.id)}"
-                                ${checked}
-                            >
-
-                        </td>
-
-
-                        <td>
-
-                            <div class="part-name">
-
-                                <div class="part-avatar">
-                                    ${getInitial(part.name)}
-                                </div>
-
-                                <strong>
-                                    ${escapeHtml(
-                                        part.name || "بدون اسم"
-                                    )}
-                                </strong>
-
-                            </div>
-
-                        </td>
-
-
-                        <td>
-
-                            <span class="type-badge">
-
-                                ${escapeHtml(
-                                    part.type || "غير محدد"
-                                )}
-
-                            </span>
-
-                        </td>
-
-
-                        <td>
-
-                            <span class="ip-address">
-
-                                ${escapeHtml(
-                                    part.ip || "-"
-                                )}
-
-                            </span>
-
-                        </td>
-
-
-                        <td>
-
-                            <span class="mac-address">
-
-                                ${escapeHtml(
-                                    part.mac || "-"
-                                )}
-
-                            </span>
-
-                        </td>
-
-
-                        <td>
-
-                            <span class="server-badge">
-
-                                ${escapeHtml(
-                                    part.server || "-"
-                                )}
-
-                            </span>
-
-                        </td>
-
-
-                        <td>
-
-                            <span class="date-cell">
-
-                                ${escapeHtml(createdAt)}
-
-                            </span>
-
-                        </td>
-
-
-                        <td>
-
-                            <div class="note-cell"
-                                 title="${escapeAttribute(
-                                     part.note || ""
-                                 )}">
-
-                                ${escapeHtml(
-                                    part.note || "-"
-                                )}
-
-                            </div>
-
-                        </td>
-
-                    </tr>
-
-                `;
-
-            }).join("");
+            return `
+                <tr data-id="${escapeAttribute(part.id)}" class="${selectedIds.has(part.id) ? "selected" : ""}">
+                    <td class="check-column">
+                        <input type="checkbox" class="part-checkbox" data-id="${escapeAttribute(part.id)}" ${checked}>
+                    </td>
+                    <td>
+                        <div class="part-name">
+                            <div class="part-avatar">${getInitial(part.name)}</div>
+                            <strong>${escapeHtml(part.name || "بدون اسم")}</strong>
+                        </div>
+                    </td>
+                    <td>
+                        <span class="type-badge">${escapeHtml(part.type || "غير محدد")}</span>
+                    </td>
+                    <td>
+                        <span class="ip-address" dir="ltr" style="font-family:monospace;">${escapeHtml(part.ip || "-")}</span>
+                    </td>
+                    <td>
+                        <span class="mac-address" dir="ltr" style="font-family:monospace;">${escapeHtml(part.mac || "-")}</span>
+                    </td>
+                    <td>
+                        <span style="font-family:monospace; font-weight:bold; color:#0284c7;" dir="ltr">${escapeHtml(part.frequency || "-")}</span>
+                    </td>
+                    <td>
+                        <span style="background:rgba(2,132,199,0.1); color:#0284c7; padding:3px 8px; border-radius:6px; font-size:12px; font-weight:600;" dir="ltr">${escapeHtml(part.channelWidth || "-")}</span>
+                    </td>
+                    <td>
+                        <span class="server-badge">${escapeHtml(part.server || "-")}</span>
+                    </td>
+                    <td>
+                        <span class="date-cell">${escapeHtml(createdAt)}</span>
+                    </td>
+                    <td>
+                        <div class="note-cell" title="${escapeAttribute(part.note || "")}">
+                            ${escapeHtml(part.note || "-")}
+                        </div>
+                    </td>
+                </tr>
+            `;
+        }).join("");
     }
 
-
     attachRowEvents();
-
     updateSelectAllState();
-
 }
 
 
@@ -940,7 +831,8 @@ function openEditModal() {
     if (partIp) partIp.value = part.ip || "";
 
     if (partMac) partMac.value = part.mac || "";
-
+if (partFrequency) partFrequency.value = part.frequency || "";
+if (partChannelWidth) partChannelWidth.value = part.channelWidth || "";
     if (partServer) partServer.value = part.server || "";
 
     if (partNote) partNote.value = part.note || "";
@@ -1030,6 +922,8 @@ if (partForm) {
             const type = partType ? partType.value : "";
             const ip = partIp ? partIp.value.trim() : "";
             const mac = partMac ? partMac.value.trim() : "";
+            const frequency = partFrequency ? partFrequency.value.trim() : "";
+const channelWidth = partChannelWidth ? partChannelWidth.value : "";
             const server = partServer ? partServer.value : "";
             const note = partNote ? partNote.value.trim() : "";
 
@@ -1111,6 +1005,8 @@ if (partForm) {
                     type,
                     ip,
                     mac,
+                    frequency,     
+    channelWidth,
                     server,
                     note
 

@@ -59,16 +59,15 @@
                 النظام
             </div>
 
-            <!-- قم باستبدال الرابط القديم بهذا الكود -->
-<a href="reports.html" class="nav-item">
-    <span class="nav-icon">▤</span>
-    <span>التقارير</span>
-</a>
+            <a href="reports.html" class="nav-item">
+                <span class="nav-icon">▤</span>
+                <span>التقارير</span>
+            </a>
 
             <a href="logs.html" class="nav-item">
-            <span class="nav-icon">☷</span>
-            <span>السجلات</span>
-        </a>
+                <span class="nav-icon">☷</span>
+                <span>السجلات</span>
+            </a>
 
         </nav>
 
@@ -306,7 +305,7 @@
                         <input
                             type="text"
                             id="searchInput"
-                            placeholder="ابحث عن اسم، IP، MAC..."
+                            placeholder="ابحث عن اسم، IP، MAC، تردد..."
                             autocomplete="off"
                         >
 
@@ -437,6 +436,14 @@
                             </th>
 
                             <th>
+                                التردد
+                            </th>
+
+                            <th>
+                                عرض الحزمة
+                            </th>
+
+                            <th>
                                 السيرفر
                             </th>
 
@@ -457,7 +464,7 @@
 
                         <tr>
 
-                            <td colspan="8" class="loading-cell">
+                            <td colspan="10" class="loading-cell">
 
                                 <div class="loading-spinner"></div>
 
@@ -611,21 +618,19 @@
                             <option value="">
                                 اختر نوع القطعة
                             </option>
-<option value="PowerBeamM5">PowerBeamM5</option>
-<option value="RocketM5">RocketM5</option>
-<option value="RocketM2">RocketM2</option>
-<option value="NanoStationM5">NanoStationM5</option>
-<option value="NanoStationM2">NanoStationM2</option>
-<option value="LiteBeam 5AC">LiteBeam 5AC</option>
-<option value="C5x">C5x</option>
-<option value="OmniTIK5 ac">OmniTIK5 ac</option>
-<option value="SXT">SXT</option>
-<option value="Router">Router</option>
-<option value="Switch">Switch</option>
-<option value="Access Point">Access Point</option>
-<option value="Other">أخرى / Other</option>Point
-                            </option>
-
+                            <option value="PowerBeamM5">PowerBeamM5</option>
+                            <option value="RocketM5">RocketM5</option>
+                            <option value="RocketM2">RocketM2</option>
+                            <option value="NanoStationM5">NanoStationM5</option>
+                            <option value="NanoStationM2">NanoStationM2</option>
+                            <option value="LiteBeam 5AC">LiteBeam 5AC</option>
+                            <option value="C5x">C5x</option>
+                            <option value="OmniTIK5 ac">OmniTIK5 ac</option>
+                            <option value="SXT">SXT</option>
+                            <option value="Router">Router</option>
+                            <option value="Switch">Switch</option>
+                            <option value="Access Point">Access Point</option>
+                            <option value="Other">أخرى / Other</option>
 
                         </select>
 
@@ -669,6 +674,46 @@
                             placeholder="مثال: AA:BB:CC:DD:EE:FF"
                             dir="ltr"
                         >
+
+                    </div>
+
+
+
+                    <!-- Frequency (التردد) -->
+                    <div class="form-group">
+
+                        <label for="partFrequency">
+                            التردد (Frequency)
+                            <small>اختياري</small>
+                        </label>
+
+                        <input
+                            type="text"
+                            id="partFrequency"
+                            placeholder="مثال: 5805"
+                            dir="ltr"
+                        >
+
+                    </div>
+
+
+
+                    <!-- Channel Width (عرض الحزمة) -->
+                    <div class="form-group">
+
+                        <label for="partChannelWidth">
+                            عرض الحزمة (Channel Width)
+                            <small>اختياري</small>
+                        </label>
+
+                        <select id="partChannelWidth">
+                            <option value="">اختر عرض الحزمة</option>
+                            <option value="20MHz">20 MHz</option>
+                            <option value="20/40MHz">20/40 MHz</option>
+                            <option value="30MHz">30 MHz</option>
+                            <option value="40MHz">40 MHz</option>
+                            <option value="80MHz">80 MHz</option>
+                        </select>
 
                     </div>
 
